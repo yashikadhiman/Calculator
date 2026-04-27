@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+
+
+<style>
+
+body{
+   display: flex;
+   justify-content: center;
+   background-color: black;
+   align-items: center;
+   height: 100vh;  /* 100vh = 100% of screen height, always work based on the screen
+& 100% = 100% of parent height, work only if parent has height  & 1vh = 8px */
+   margin: 0;
+}
+div{
+   height: 440px;
+   width: 300px;
+   background-color: black;
+
+}
+.displayCal{
+   height: 60px;
+   width: 100%;
+   font-size: 40px;
+   margin: 0;
+   padding-top: 10px;
+   color: white;
+   
+}
+button{
+color: white;
+background-color: rgb(70, 69, 69);
+border: none;
+height: 55px;
+width: 55px;
+border-radius: 50%;
+font-size: x-large;
+margin-right: 7px;
+}
+#clear-button{
+   font-size: large;
+}
+.operator{
+   background-color: orange;
+}
+.cal-border{
+   border: 2px solid grey;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 2px 2px 20px 2px rgba(128, 128, 128, 0.589);
+}
+.displayCal{
+   border-bottom:2px solid grey ;
+}
+
+
+
+
+</style>
+
+
+<div class="cal-border" >
+    <p class="displayCal"></p> 
+
+
+   <p> <button  onclick=" updateCalculation('1'); ">1</button>
+    <button onclick="updateCalculation('2'); ">2</button>
+    <button onclick="updateCalculation('3'); ">3</button>
+    <button class="operator" onclick=" updateCalculation(' + ');">+</button></p>
+
+    <p> <button onclick="updateCalculation('4'); ">4</button>
+    <button onclick="updateCalculation('5'); ">5</button>
+    <button onclick="updateCalculation('6'); ">6</button>
+    <button class="operator" onclick="updateCalculation(' - '); ">-</button></p>
+   
+    <p> <button onclick="updateCalculation('7'); ">7</button>
+    <button onclick="updateCalculation('8'); ">8</button>
+    <button onclick="updateCalculation('9'); ">9</button>
+    <button class="operator" onclick=" updateCalculation(' * ');">*</button></p>
+
+    <p>
+   <button onclick=" updateCalculation('0');">0</button>
+   <button onclick=" updateCalculation(' . ');">.</button>
+    <button onclick="calculation = eval(calculation); document.querySelector('.displayCal').innerHTML =`${calculation}`;">=</button>
+   <button class="operator" onclick=" updateCalculation(' / ');">/</button>
+
+ </p> 
+     <button id="clear-button" onclick=" calculation='';  document.querySelector('.displayCal').innerHTML =`${calculation}`; ">clear</button>
+
+   
+</div>
+                           <!--   eval(calclation) =this convert string into math, this is only use for learning purpose, do not use in real world projects-->
+<script>
+
+let calculation =localStorage.getItem('calculation') || "";  //localStorage is a browser storage that allows javascript to save data inside the browser / permanent memory inside browser, only strings will be stored
+               
+      displayCalculation(); //display the pervious calculation when the page load
+
+function updateCalculation(value){          //getItem() getting saved data
+      calculation += value;
+   
+      displayCalculation(); //display the calculation on page , instead of console
+
+      localStorage.setItem('calculation', calculation);   // setItem() save data
+}
+function displayCalculation(){
+   document.querySelector('.displayCal').innerHTML = calculation;
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>
